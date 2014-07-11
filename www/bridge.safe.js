@@ -13,40 +13,52 @@ var safe = {
   /**
    * encrypt
    *
-   * @param {String} args File URI
+   * @param {String} path File URI
    * @param {String} password Password for encryption
    * @param {Function} success Success callback
    * @param {Function} error Failure callback
    */
-  encrypt: function(args, password, success, error) {
-    if (!args || arguments.length === 0) return;
-    exec(onSuccess, onError, "Safe", "encrypt", [args]);
+  encrypt: function(path, password, success, error) {
+    var encryptSuccess, encryptError;
+
+    if (!path || arguments.length === 0) return;
+
+    encryptSuccess = onSuccess.bind(null, path, success);
+    encryptError = onError.bind(null, path, error);
+
+    exec(encryptSuccess, encryptError, "Safe", "encrypt", [path]);
   },
 
   /**
    * decrypt
    *
-   * @param {String} args File URI
+   * @param {String} path File URI
    * @param {String} password Password for decryption
    * @param {Function} success Success callback
    * @param {Function} error Failure callback
    */
-  decrypt: function(args, password, success, error) {
-    if (!args || arguments.length === 0) return;
-    exec(onSuccess, onError, "Safe", "decrypt", [args]);
+  decrypt: function(path, password, success, error) {
+    var decryptSuccess, decryptError;
+
+    if (!path || arguments.length === 0) return;
+
+    decryptSuccess = onSuccess.bind(null, path, success);
+    decryptError   = onError.bind(null, path, error);
+
+    exec(decryptSuccess, decryptError, "Safe", "decrypt", [path]);
   }
 
 };
 
-function onSuccess(path) {
+function onSuccess(path, success) {
   if (typeof success === 'function') success(path);
   return path;
 }
 
-function onError(code) {
-  var error = code || 0;
-  if (typeof error === 'function') error(error);
-  return error;
+function onError(code, error) {
+  var result = code || 0;
+  if (typeof error === 'function') error(result);
+  return result;
 }
 
 exports.safe = safe;
