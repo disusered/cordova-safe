@@ -11,19 +11,19 @@
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="safe">
-        <param name="android-package" value="com.bridge.safe.safe"/>
+      <feature name="Safe">
+        <param name="android-package" value="com.bridge.Safe"/>
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/safe.java" target-dir="src/com/bridge/safe/safe"/>
+    <source-file src="src/android/Safe.java" target-dir="src/com/bridge/Safe"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
-      <feature name="safe">
-        <param name="ios-package" value="safe"/>
+      <feature name="Safe">
+        <param name="ios-package" value="Safe"/>
       </feature>
     </config-file>
-    <source-file src="src/ios/CDVsafe.m"/>
+    <source-file src="src/ios/Safe.m"/>
   </platform>
 </plugin>
