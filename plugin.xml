@@ -1,2 +1,29 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.bridge.safe" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>safe</name><js-module name="safe" src="www/safe.js"><clobbers target="cordova.plugins.safe" /></js-module><platform name="android"><config-file parent="/*" target="res/xml/config.xml"><feature name="safe"><param name="android-package" value="com.bridge.safe.safe" /></feature></config-file><config-file parent="/*" target="AndroidManifest.xml" /><source-file src="src/android/safe.java" target-dir="src/com/bridge/safe/safe" /></platform><platform name="ios"><config-file parent="/*" target="config.xml"><feature name="safe"><param name="ios-package" value="safe" /></feature></config-file><source-file src="src/ios/CDVsafe.m" /></platform></plugin>
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.safe" version="0.1.0">
+  <name>Safe</name>
+  <description>Easy to use cryptographic operations for Cordova.</description>
+  <license>GPLv2</license>
+  <keywords>cordova,file,open,intent</keywords>
+  <repo>https://github.com/cordova-bridge/safe</repo>
+  <issue>https://github.com/cordova-bridge/safe/issues</issue>
+  <js-module name="safe" src="www/safe.js">
+    <clobbers target="cordova.plugins.safe"/>
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="safe">
+        <param name="android-package" value="com.bridge.safe.safe"/>
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml"/>
+    <source-file src="src/android/safe.java" target-dir="src/com/bridge/safe/safe"/>
+  </platform>
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="safe">
+        <param name="ios-package" value="safe"/>
+      </feature>
+    </config-file>
+    <source-file src="src/ios/CDVsafe.m"/>
+  </platform>
+</plugin>
