@@ -7,7 +7,7 @@
   <repo>https://github.com/cordova-bridge/safe</repo>
   <issue>https://github.com/cordova-bridge/safe/issues</issue>
   <js-module name="safe" src="www/bridge.safe.js">
-    <clobbers target="cordova.plugins.safe"/>
+    <merges target="cordova.plugins.bridge"/>
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
