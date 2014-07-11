@@ -6,7 +6,7 @@
   <keywords>cordova,file,open,intent</keywords>
   <repo>https://github.com/cordova-bridge/safe</repo>
   <issue>https://github.com/cordova-bridge/safe/issues</issue>
-  <js-module name="safe" src="www/safe.js">
+  <js-module name="safe" src="www/bridge.safe.js">
     <clobbers target="cordova.plugins.safe"/>
   </js-module>
   <platform name="android">
