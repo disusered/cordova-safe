@@ -27,6 +27,7 @@ var safe = {
     encryptError = onError.bind(null, path, error);
 
     exec(encryptSuccess, encryptError, "Safe", "encrypt", [path]);
+
   },
 
   /**
@@ -56,9 +57,9 @@ function onSuccess(path, success) {
 }
 
 function onError(code, error) {
-  var result = code || 0;
-  if (typeof error === 'function') error(result);
-  return result;
+  code = code || 0;
+  if (typeof error === 'function') error(code);
+  return code;
 }
 
 exports.safe = safe;
