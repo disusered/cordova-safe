@@ -4,17 +4,25 @@
 */
 package com.bridge;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.net.Uri;
 import android.content.Context;
 
 import com.facebook.crypto.Crypto;
+import com.facebook.crypto.Entity;
+import com.facebook.crypto.exception.CryptoInitializationException;
+import com.facebook.crypto.exception.KeyChainException;
 import com.facebook.crypto.keychain.SharedPrefsBackedKeyChain;
 import com.facebook.crypto.util.SystemNativeCryptoLibrary;
 
@@ -45,7 +53,59 @@ public class Safe extends CordovaPlugin {
 
     private void encryptFile(String path, CallbackContext callbackContext) {
       if (path != null && path.length() > 0) {
-        callbackContext.success(path);
+        Entity entity = null;
+        Context context = cordova.getActivity().getApplicationContext();
+
+        Uri uri = Uri.parse(path);
+        String fileName = uri.getLastPathSegment();
+
+        File file = new File(uri.getPath());
+        File tmpFile = null;
+        try {
+          tmpFile = File.createTempFile(fileName, null, context.getCacheDir());
+        } catch (IOException e) {
+          callbackContext.error(0);
+          e.printStackTrace();
+        }
+
+        OutputStream fileStream = null;
+        try {
+          fileStream = new BufferedOutputStream(
+              new FileOutputStream(tmpFile));
+        } catch (FileNotFoundException e) {
+          callbackContext.error(4);
+          e.printStackTrace();
+        }
+
+        Crypto crypto = new Crypto(
+            new SharedPrefsBackedKeyChain(context),
+            new SystemNativeCryptoLibrary());
+
+        if (!crypto.isAvailable()) {
+          callbackContext.error(1);
+          return;
+        }
+
+        try {
+          OutputStream outputStream = crypto.getCipherOutputStream(
+            fileStream,
+            entity);
+
+          // TODO: Write contents of file to encryption stream
+          // outputStream.write(contents);
+          outputStream.close();
+
+          callbackContext.success(path);
+        } catch (IOException e) {
+          callbackContext.error(0);
+          e.printStackTrace();
+        } catch (CryptoInitializationException e) {
+          callbackContext.error(1);
+          e.printStackTrace();
+        } catch (KeyChainException e) {
+          callbackContext.error(3);
+          e.printStackTrace();
+        }
       } else {
         callbackContext.error(2);
       }
