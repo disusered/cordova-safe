@@ -11,6 +11,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.net.Uri;
+import android.content.Context;
+
+import com.facebook.crypto.Crypto;
+import com.facebook.crypto.keychain.SharedPrefsBackedKeyChain;
+import com.facebook.crypto.util.SystemNativeCryptoLibrary;
+
 /**
  * This class echoes a string called from JavaScript.
  */
