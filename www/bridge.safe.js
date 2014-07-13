@@ -1,10 +1,10 @@
 /**
- * @title Safe - cordova.plugins.bridge.safe
+ * bridge.safe.js
+ *
+ * @author Carlos Antonio
  * @overview Easy to use cryptographic operations for Cordova.
  * @copyright © 2014 cordova-bridge
  * @license GPLv2
- * @author Carlos Antonio
- * @version 0.1.0
 */
 
 var exec = require('cordova/exec');
