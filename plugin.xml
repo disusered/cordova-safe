@@ -17,6 +17,12 @@
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
     <source-file src="src/android/crypto.jar" target-dir="libs"/>
+    <source-file src="src/android/armeabi/libconceal.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/armeabi/libcryptox.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/armeabi-v7a/libconceal.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/armeabi-v7a/libcryptox.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/x86/libconceal.so" target-dir="libs/x86"/>
+    <source-file src="src/android/x86/libcryptox.so" target-dir="libs/x86"/>
     <source-file src="src/android/Safe.java" target-dir="src/com/bridge"/>
   </platform>
   <platform name="ios">
