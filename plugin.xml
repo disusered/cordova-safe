@@ -17,7 +17,7 @@
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
     <source-file src="src/android/crypto.jar" target-dir="libs"/>
-    <source-file src="src/android/Safe.java" target-dir="src/com/bridge/Safe"/>
+    <source-file src="src/android/Safe.java" target-dir="src/com/bridge"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
