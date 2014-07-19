@@ -23,8 +23,8 @@ var safe = {
 
     if (!path || arguments.length === 0) return;
 
-    encryptSuccess = onSuccess.bind(null, path, success);
-    encryptError = onError.bind(null, path, error);
+    encryptSuccess = onSuccess.bind(null, success);
+    encryptError = onError.bind(null, error);
 
     exec(encryptSuccess, encryptError, "Safe", "encrypt", [path, password]);
 
@@ -43,21 +43,20 @@ var safe = {
 
     if (!path || arguments.length === 0) return;
 
-    decryptSuccess = onSuccess.bind(null, path, success);
-    decryptError   = onError.bind(null, path, error);
+    decryptSuccess = onSuccess.bind(null, success);
+    decryptError   = onError.bind(null, error);
 
     exec(decryptSuccess, decryptError, "Safe", "decrypt", [path, password]);
   }
 
 };
 
-function onSuccess(path, success) {
+function onSuccess(success, path) {
   if (typeof success === 'function') success(path);
   return path;
 }
 
-function onError(code, error) {
-  code = code || 0;
+function onError(error, code) {
   if (typeof error === 'function') error(code);
   return code;
 }
