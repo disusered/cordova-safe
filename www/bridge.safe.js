@@ -51,11 +51,25 @@ var safe = {
 
 };
 
+/**
+ * onSuccess
+ *
+ * @param {String} path Encrypted file URI
+ * @param {Function} success Success callback
+ * @return {String} Encrypted file URI
+ */
 function onSuccess(success, path) {
   if (typeof success === 'function') success(path);
   return path;
 }
 
+/**
+ * onError
+ *
+ * @param {String} path Decrypted file URI
+ * @param {Function} success Error callback
+ * @return {String} Decrypted file URI
+ */
 function onError(error, code) {
   if (typeof error === 'function') error(code);
   return code;
