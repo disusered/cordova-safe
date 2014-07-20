@@ -83,7 +83,10 @@ public class Safe extends CordovaPlugin {
         // write to temp file
         this.writeFile(INPUT_STREAM, encryptedOutputStream, callbackContext);
       } else if (action.equals(DECRYPT_ACTION)) {
+        // create decrypted input stream
         InputStream decryptedInputStream = CRYPTO.getCipherInputStream(INPUT_STREAM, ENTITY);
+        // write to temp file
+        this.writeFile(decryptedInputStream, OUTPUT_STREAM, callbackContext);
       }
       callbackContext.success(TEMP_FILE.getPath());
     } catch (IOException e) {
