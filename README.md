@@ -1,4 +1,3 @@
-
 safe
 ====
 
@@ -73,3 +72,4 @@ safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', password, suc
 - https://github.com/shazron/KeychainPlugin
 - http://developer.android.com/training/articles/security-tips.html
 - http://stackoverflow.com/questions/8184492/best-way-to-secure-android-app-sensitive-data
+- http://developer.android.com/training/basics/data-storage/files.html

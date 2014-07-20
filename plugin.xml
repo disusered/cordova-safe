@@ -7,23 +7,33 @@
   <repo>https://github.com/cordova-bridge/safe</repo>
   <issue>https://github.com/cordova-bridge/safe/issues</issue>
   <js-module name="safe" src="www/bridge.safe.js">
-    <clobbers target="cordova.plugins.safe"/>
+    <merges target="cordova.plugins.bridge"/>
   </js-module>
   <platform name="android">
-    <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="safe">
-        <param name="android-package" value="com.bridge.safe.safe"/>
+    <config-file target="res/xml/config.xml" parent="/widget/plugins">
+      <feature name="Safe">
+        <param name="android-package" value="com.bridge.Safe"/>
       </feature>
     </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/safe.java" target-dir="src/com/bridge/safe/safe"/>
+    <source-file src="src/android/crypto.jar" target-dir="libs"/>
+    <source-file src="src/android/armeabi/libconceal.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/armeabi/libcryptox.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/armeabi-v7a/libconceal.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/armeabi-v7a/libcryptox.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/x86/libconceal.so" target-dir="libs/x86"/>
+    <source-file src="src/android/x86/libcryptox.so" target-dir="libs/x86"/>
+    <source-file src="src/android/Safe.java" target-dir="src/com/bridge"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
-      <feature name="safe">
-        <param name="ios-package" value="safe"/>
+      <feature name="Safe">
+        <param name="ios-package" value="Safe"/>
       </feature>
     </config-file>
-    <source-file src="src/ios/CDVsafe.m"/>
+    <source-file src="src/ios/Safe.m"/>
   </platform>
 </plugin>
