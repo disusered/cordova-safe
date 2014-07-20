@@ -62,13 +62,7 @@ public class Safe extends CordovaPlugin {
       String path = args.getString(0);
       String pass = args.getString(1);
 
-      if (action.equals(ENCRYPT_ACTION)) {
-        this.cryptOp(path, pass, action, callbackContext);
-      }
-
-      if (action.equals(DECRYPT_ACTION)) {
-        this.decryptFile(path, pass, callbackContext);
-      }
+      this.cryptOp(path, pass, action, callbackContext);
 
       return true;
     }
@@ -105,14 +99,6 @@ public class Safe extends CordovaPlugin {
       callbackContext.error(e.getMessage());
     } catch (Exception e) {
       callbackContext.error(e.getMessage());
-    }
-  }
-
-  private void decryptFile(String path, String password, CallbackContext callbackContext) {
-    if (path != null && path.length() > 0) {
-      callbackContext.success(path);
-    } else {
-      callbackContext.error(2);
     }
   }
 
