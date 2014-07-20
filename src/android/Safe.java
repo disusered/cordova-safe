@@ -63,7 +63,7 @@ public class Safe extends CordovaPlugin {
       String pass = args.getString(1);
 
       if (action.equals(ENCRYPT_ACTION)) {
-        this.encryptFile(path, pass, callbackContext);
+        this.cryptOp(path, pass, action, callbackContext);
       }
 
       if (action.equals(DECRYPT_ACTION)) {
@@ -76,18 +76,19 @@ public class Safe extends CordovaPlugin {
     return false;
   }
 
-  private void encryptFile(String path, String password, CallbackContext callbackContext) {
+  private void cryptOp(String path, String password, String action, CallbackContext callbackContext) {
     // init crypto variables
     this.initCrypto(path, password, callbackContext);
 
     // create output stream which encrypts the data as
     // it is written to it and writes out to the file
     try {
-      // create encrypted output stream
-      OutputStream encryptedOutputStream = CRYPTO.getCipherOutputStream(OUTPUT_STREAM, ENTITY);
-
-      // write to temp file
-      this.writeFile(encryptedOutputStream, callbackContext);
+      if (action.equals(ENCRYPT_ACTION)) {
+        // create encrypted output stream
+        OutputStream encryptedOutputStream = CRYPTO.getCipherOutputStream(OUTPUT_STREAM, ENTITY);
+        // write to temp file
+        this.writeFile(encryptedOutputStream, callbackContext);
+      }
 
       // delete original file after write
       boolean deleted = SOURCE_FILE.delete();
