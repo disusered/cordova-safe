@@ -83,24 +83,13 @@ public class Safe extends CordovaPlugin {
     // create output stream which encrypts the data as
     // it is written to it and writes out to the file
     try {
+      // create encrypted output stream
       OutputStream encryptedOutputStream = CRYPTO.getCipherOutputStream(OUTPUT_STREAM, ENTITY);
 
-      // create new byte object with source file length
-      byte[] data = new byte[(int) SOURCE_FILE.length()];
+      // write to temp file
+      this.writeFile(encryptedOutputStream, callbackContext);
 
-      // read contents of source file byte by byte
-      int buffer = 0;
-      while ((buffer = INPUT_STREAM.read(data)) > 0) {
-        // write contents to encrypted output stream
-        encryptedOutputStream.write(data, 0, buffer);
-        encryptedOutputStream.flush();
-      }
-
-      // close encrypted output stream
-      encryptedOutputStream.close();
-      INPUT_STREAM.close();
-
-      // delete original file
+      // delete original file after write
       boolean deleted = SOURCE_FILE.delete();
       if (deleted) {
         callbackContext.success(TEMP_FILE.getPath());
@@ -161,6 +150,28 @@ public class Safe extends CordovaPlugin {
       }
     } else {
       callbackContext.error(2);
+    }
+  }
+
+  private void writeFile(OutputStream outputStream, CallbackContext callbackContext) {
+    try {
+      // create new byte object with source file length
+      byte[] data = new byte[(int) SOURCE_FILE.length()];
+
+      // read contents of source file byte by byte
+      int buffer = 0;
+      while ((buffer = INPUT_STREAM.read(data)) > 0) {
+        // write contents to encrypted output stream
+        outputStream.write(data, 0, buffer);
+        outputStream.flush();
+      }
+
+      // close output stream
+      outputStream.close();
+      INPUT_STREAM.close();
+    } catch (IOException e) {
+      callbackContext.error(e.getMessage());
+      e.printStackTrace();
     }
   }
 }
