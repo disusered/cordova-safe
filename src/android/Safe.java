@@ -51,7 +51,6 @@ public class Safe extends CordovaPlugin {
   private OutputStream OUTPUT_STREAM;
   private InputStream INPUT_STREAM;
 
-  private String FILE_NAME;
   private File SOURCE_FILE;
   private File TEMP_FILE;
 
@@ -102,12 +101,12 @@ public class Safe extends CordovaPlugin {
 
   private void initCrypto(String path, String password, CallbackContext callbackContext) {
     if (path != null && path.length() > 0 && password != null && password.length() > 0) {
-      Uri uri = Uri.parse(path);
+      Uri uri         = Uri.parse(path);
+      String fileName = uri.getLastPathSegment();
 
       CONTEXT = cordova.getActivity().getApplicationContext();
       ENTITY = new Entity(password);
 
-      FILE_NAME = uri.getLastPathSegment();
       SOURCE_FILE = new File(uri.getPath());
 
       // initialize crypto object
@@ -121,7 +120,7 @@ public class Safe extends CordovaPlugin {
 
       try {
         // initialize temp file
-        TEMP_FILE = File.createTempFile(FILE_NAME, null, CONTEXT.getCacheDir());
+        TEMP_FILE = File.createTempFile(fileName, null, CONTEXT.getCacheDir());
         // initialize output stream for temp file
         OUTPUT_STREAM = new BufferedOutputStream(new FileOutputStream(TEMP_FILE));
         // create input stream from source file
