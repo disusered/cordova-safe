@@ -82,15 +82,10 @@ public class Safe extends CordovaPlugin {
         OutputStream encryptedOutputStream = CRYPTO.getCipherOutputStream(OUTPUT_STREAM, ENTITY);
         // write to temp file
         this.writeFile(encryptedOutputStream, callbackContext);
+      } else if (action.equals(DECRYPT_ACTION)) {
+        InputStream decryptedInputStream = CRYPTO.getCipherInputStream(INPUT_STREAM, ENTITY);
       }
-
-      // delete original file after write
-      boolean deleted = SOURCE_FILE.delete();
-      if (deleted) {
-        callbackContext.success(TEMP_FILE.getPath());
-      } else {
-        callbackContext.error(1);
-      }
+      callbackContext.success(TEMP_FILE.getPath());
     } catch (IOException e) {
       callbackContext.error(e.getMessage());
     } catch (CryptoInitializationException e) {
