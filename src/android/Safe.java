@@ -90,7 +90,19 @@ public class Safe extends CordovaPlugin {
         // write to temp file
         this.writeFile(decryptedInputStream, OUTPUT_STREAM, callbackContext);
       }
-      callbackContext.success(TEMP_FILE.getPath());
+
+      // delete original file after write
+      boolean deleted = SOURCE_FILE.delete();
+      if (deleted) {
+        File src = TEMP_FILE;
+        File dst = new File(SOURCE_URI.getPath());
+
+        this.copyFile(src, dst);
+
+        callbackContext.success(dst.getPath());
+      } else {
+        callbackContext.error(1);
+      }
     } catch (IOException e) {
       callbackContext.error(e.getMessage());
     } catch (CryptoInitializationException e) {
