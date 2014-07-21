@@ -23,6 +23,7 @@ import java.io.OutputStream;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -51,6 +52,8 @@ public class Safe extends CordovaPlugin {
   private OutputStream OUTPUT_STREAM;
   private InputStream INPUT_STREAM;
 
+  private String FILE_NAME;
+  private Uri SOURCE_URI;
   private File SOURCE_FILE;
   private File TEMP_FILE;
 
@@ -101,13 +104,13 @@ public class Safe extends CordovaPlugin {
 
   private void initCrypto(String path, String password, CallbackContext callbackContext) {
     if (path != null && path.length() > 0 && password != null && password.length() > 0) {
-      Uri uri         = Uri.parse(path);
-      String fileName = uri.getLastPathSegment();
+      SOURCE_URI  = Uri.parse(path);
+      FILE_NAME = SOURCE_URI.getLastPathSegment();
 
       CONTEXT = cordova.getActivity().getApplicationContext();
       ENTITY = new Entity(password);
 
-      SOURCE_FILE = new File(uri.getPath());
+      SOURCE_FILE = new File(SOURCE_URI.getPath());
 
       // initialize crypto object
       CRYPTO = new Crypto(new SharedPrefsBackedKeyChain(CONTEXT), new SystemNativeCryptoLibrary());
@@ -120,7 +123,7 @@ public class Safe extends CordovaPlugin {
 
       try {
         // initialize temp file
-        TEMP_FILE = File.createTempFile(fileName, null, CONTEXT.getCacheDir());
+        TEMP_FILE = File.createTempFile(FILE_NAME, null, CONTEXT.getExternalCacheDir());
         // initialize output stream for temp file
         OUTPUT_STREAM = new BufferedOutputStream(new FileOutputStream(TEMP_FILE));
         // create input stream from source file
