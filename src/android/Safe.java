@@ -161,4 +161,18 @@ public class Safe extends CordovaPlugin {
       e.printStackTrace();
     }
   }
+
+  public void copyFile(File source, File dest) throws IOException {
+      InputStream in = new FileInputStream(source);
+      OutputStream out = new FileOutputStream(dest);
+
+      // Transfer bytes from in to out
+      byte[] buf = new byte[1024];
+      int len;
+      while ((len = in.read(buf)) > 0) {
+          out.write(buf, 0, len);
+      }
+      in.close();
+      out.close();
+  }
 }
