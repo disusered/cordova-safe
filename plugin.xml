@@ -35,5 +35,6 @@
       </feature>
     </config-file>
     <source-file src="src/ios/Safe.m"/>
+    <header-file src="src/ios/Safe.h"/>
   </platform>
 </plugin>
