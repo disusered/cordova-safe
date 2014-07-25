@@ -23,5 +23,6 @@
 
 - (void)encrypt:(CDVInvokedUrlCommand*)command;
 - (void)decrypt:(CDVInvokedUrlCommand*)command;
+- (NSData*)crypto:(NSString*)action uri:(NSString *)path pass:(NSString *)password;
 
 @end
