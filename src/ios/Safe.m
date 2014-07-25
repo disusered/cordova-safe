@@ -21,20 +21,14 @@
  */
 - (void)encrypt:(CDVInvokedUrlCommand *)command {
 
-  NSString *path = [command.arguments objectAtIndex:0];
-  NSString *password = [command.arguments objectAtIndex:1];
-
   CDVPluginResult *pluginResult = nil;
 
-  // encrypt file at path with password
-  NSData *encryptedData = [self crypto:@"encrypt" uri:path pass:password];
+  NSString *path = [self crypto:@"encrypt" command:command];
 
-  // if file crypto returned data
-  if (encryptedData != nil) {
-    // write to generated path
-    [encryptedData writeToFile:path atomically:YES];
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                     messageAsString:path];
+  if (path != nil) {
+    pluginResult =
+        [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                          messageAsString:path];
   } else {
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
   }
@@ -49,12 +43,15 @@
  *  @param command An array of arguments passed from javascript
  */
 - (void)decrypt:(CDVInvokedUrlCommand *)command {
-  CDVPluginResult *pluginResult = nil;
-  NSString *echo = [command.arguments objectAtIndex:0];
 
-  if (echo != nil && [echo length] > 0) {
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                     messageAsString:echo];
+  CDVPluginResult *pluginResult = nil;
+
+  NSString *path = [self crypto:@"decrypt" command:command];
+
+  if (path != nil) {
+    pluginResult =
+        [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                          messageAsString:path];
   } else {
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
   }
@@ -64,19 +61,19 @@
 }
 
 /**
- *  Returns the data after being encrypted or decrypted
+ *  Encrypts or decrypts file at given URI.
  *
- *  @param action   Cryptographic operation ie encrypt/decrypt
- *  @param path     String URI of file we're to encrypt
- *  @param password Key for cryptographic operation
  *
- *  @return Encrypted or decrypted NSData
+ *  @param action  Cryptographic operation
+ *  @param command Cordova arguments
+ *
+ *  @return Boolean value representing success or failure
  */
-- (NSData *)crypto:(NSString *)action
-               uri:(NSString *)path
-              pass:(NSString *)password {
+- (NSString*)crypto:(NSString *)action command:(CDVInvokedUrlCommand *)command {
 
   NSData *data = nil;
+  NSString *path = [command.arguments objectAtIndex:0];
+  NSString *password = [command.arguments objectAtIndex:1];
 
   // if path and password args exist
   if (path != nil && [path length] > 0 && password != nil &&
@@ -95,16 +92,20 @@
                            withSettings:kRNCryptorAES256Settings
                                password:password
                                   error:&error];
+
       } else if ([action isEqualToString:@"decrypt"]) {
         // decrypt data
         data = [RNDecryptor decryptData:fileData
                            withPassword:password
                                   error:&error];
       }
+
+      // write to generated path
+      [data writeToFile:path atomically:YES];
     }
   }
 
-  return data;
+  return path;
 }
 
 @end
