@@ -1,7 +1,7 @@
 safe
 ====
 
-Easy to use cryptographic operations for Cordova.
+Storage encryption for Cordova.
 
 ## Install
 
@@ -14,14 +14,14 @@ $ cordova plugin add https://github.com/cordova-bridge/safe
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.bridge.safe.encrypt(file, password, success, error);
-cordova.plugins.bridge.safe.decrypt(file, password, success, error);
+cordova.plugins.bridge.safe.encrypt(file, key, success, error);
+cordova.plugins.bridge.safe.decrypt(file, key, success, error);
 ```
 
 #### Parameters:
 
 * __file:__ A string representing a local URI
-* __password:__ A password for the crypto operations
+* __key:__ A key for the crypto operations
 * __success:__ Optional success callback
 * __error:__ Optional error callback
 
@@ -43,13 +43,13 @@ safe.decrypt('file:/storage/sdcard/DCIM/Camera/1404177327784.mp4', 'bar');
 
 ```javascript
 var safe = cordova.plugins.bridge.safe,
-    password = 'somePassword';
+    key = 'someKey';
 
 
 function success(encryptedFile) {
   console.log('Encrypted file: ' + encryptedFile);
 
-  safe.decrypt(encryptedFile, password, function(decryptedFile) {
+  safe.decrypt(encryptedFile, key, function(decryptedFile) {
     console.log('Decrypted file: ' + decryptedFile);
   }, error);
 }
@@ -58,5 +58,5 @@ function error() {
   console.log('Error with cryptographic operation');
 }
 
-safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', password, success, error);
+safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', key, success, error);
 ```
