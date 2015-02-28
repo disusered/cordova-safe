@@ -36,7 +36,7 @@ var safe = cordova.plugins.bridge.safe;
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', 'foo');
 
 // decrypt
-safe.decrypt('file:/storage/sdcard/DCIM/Camera/1404177327784.mp4', 'bar');
+safe.decrypt('file:/storage/sdcard/my-encrypted-file.txt', 'bar');
 ```
 
 #### With optional callbacks
