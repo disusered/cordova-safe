@@ -6,7 +6,7 @@ Storage encryption for Cordova.
 ## Install
 
 ```bash
-$ cordova plugin add https://github.com/cordova-bridge/safe
+$ cordova plugin add org.bridge.safe
 ```
 
 ## Usage
