@@ -3,7 +3,7 @@
  *
  * @author Carlos Antonio
  * @overview Easy to use cryptographic operations for Cordova.
- * @copyright © 2014 cordova-bridge
+ * @copyright © 2015 cordova-bridge
  * @license GPLv2
 */
 
