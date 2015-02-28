@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.safe" version="0.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.safe" version="0.2.0">
   <name>Safe</name>
   <description>Easy to use cryptographic operations for Cordova.</description>
   <license>GPLv2</license>
-  <keywords>cordova,file,open,intent</keywords>
+  <keywords>cordova,file,encrypt,decrypt</keywords>
   <repo>https://github.com/disusered/cordova-safe</repo>
   <issue>https://github.com/disusered/cordova-safe/issues</issue>
   <js-module name="safe" src="www/bridge.safe.js">
