@@ -1,7 +1,7 @@
 safe
 ====
 
-Storage encryption for Cordova.
+File encryption for Cordova.
 
 ## Install
 
