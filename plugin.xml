@@ -4,8 +4,8 @@
   <description>Easy to use cryptographic operations for Cordova.</description>
   <license>GPLv2</license>
   <keywords>cordova,file,open,intent</keywords>
-  <repo>https://github.com/cordova-bridge/safe</repo>
-  <issue>https://github.com/cordova-bridge/safe/issues</issue>
+  <repo>https://github.com/disusered/cordova-safe</repo>
+  <issue>https://github.com/disusered/cordova-safe/issues</issue>
   <js-module name="safe" src="www/bridge.safe.js">
     <merges target="cordova.plugins.bridge"/>
   </js-module>

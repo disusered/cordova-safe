@@ -1,12 +1,14 @@
 safe
 ====
 
-Storage encryption for Cordova.
+[![Circle CI](https://circleci.com/gh/disusered/cordova-safe.svg?style=shield&circle-token=3174a4dfe1cf98aa1cfe79ba4ea059a32686c833)](https://circleci.com/gh/disusered/cordova-safe)
+
+File encryption for Cordova.
 
 ## Install
 
 ```bash
-$ cordova plugin add https://github.com/cordova-bridge/safe
+$ cordova plugin add org.bridge.safe
 ```
 
 ## Usage
@@ -36,7 +38,7 @@ var safe = cordova.plugins.bridge.safe;
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', 'foo');
 
 // decrypt
-safe.decrypt('file:/storage/sdcard/DCIM/Camera/1404177327784.mp4', 'bar');
+safe.decrypt('file:/storage/sdcard/my-encrypted-file.txt', 'bar');
 ```
 
 #### With optional callbacks
