@@ -62,3 +62,8 @@ function error() {
 
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', key, success, error);
 ```
+
+## Dependencies
+- [Node](http://nodejs.org/)
+- [Gradle](https://gradle.org/)
+- [CocoaPods](http://cocoapods.org/)
