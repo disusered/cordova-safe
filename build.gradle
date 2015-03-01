@@ -1,0 +1,52 @@
+apply plugin: 'java'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile 'com.facebook.conceal:conceal:1.0.0@aar'
+}
+
+task getDeps(type: Copy) {
+  from sourceSets.main.runtimeClasspath
+  into 'libs/'
+  copyJarDependencies()
+}
+
+void copyJarDependencies() {
+  description = 'Explodes AAR files and copies all dependencies to the libs directory.'
+  println 'Adding dependencies from compile configuration'
+  configurations.compile.filter {it.name.endsWith 'jar'}.each { File file -> moveJarIntoLibs(file)}
+  println 'Extracting dependencies from compile configuration'
+  configurations.compile.filter {it.name.endsWith 'aar'}.each { File file -> moveAndRenameAar(file) }
+}
+
+void moveJarIntoLibs(File file){
+  println 'Added jar ' + file
+
+  copy{
+    from file
+    into 'libs'
+  }
+}
+
+void moveAndRenameAar(File file){
+  println 'Added aar ' + file
+  def baseFilename = file.name.lastIndexOf('.').with {it != -1 ? file.name[0..<it] : file.name}
+
+  copy{
+    from zipTree(file)
+    exclude 'classes.jar'
+    into 'libs/'+baseFilename
+  }
+
+  copy{
+    from zipTree(file)
+    include 'classes.jar'
+    into 'libs/' + baseFilename +'/libs'
+    rename { String fileName ->
+        fileName.replace('classes.jar', baseFilename + '.jar')
+    }
+  }
+}
