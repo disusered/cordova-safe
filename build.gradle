@@ -5,7 +5,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.facebook.conceal:conceal:1.0.0'
+  compile 'com.facebook.conceal:conceal:1.0.0@aar'
 }
 
 task getDeps(type: Copy) {
