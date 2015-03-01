@@ -1,9 +1,8 @@
 /**
  * bridge.safe.js
  *
- * @author Carlos Antonio
  * @overview Easy to use cryptographic operations for Cordova.
- * @copyright © 2015 cordova-bridge
+ * @author Carlos Antonio
  * @license GPLv2
 */
 
