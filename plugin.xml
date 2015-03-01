@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.safe" version="0.2.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.bridge.safe" version="0.2.1">
   <name>Safe</name>
   <description>Simple file crypto for Cordova.</description>
   <license>GPLv2</license>
