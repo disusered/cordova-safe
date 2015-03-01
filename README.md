@@ -1,7 +1,7 @@
 safe
 ====
 
-[![Circle CI](https://circleci.com/gh/disusered/cordova-safe.svg?style=shield&circle-token=3174a4dfe1cf98aa1cfe79ba4ea059a32686c833)](https://circleci.com/gh/disusered/cordova-safe)
+[![Build Status](https://travis-ci.org/disusered/cordova-safe.svg)](https://travis-ci.org/disusered/cordova-safe) [![Code Climate](https://codeclimate.com/github/disusered/cordova-safe/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-safe) 
 
 File encryption for Cordova.
 

@@ -1,2 +1,4 @@
 .local-vimrc
 .DS_Store
+.gradle
+libs
