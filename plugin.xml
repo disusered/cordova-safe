@@ -10,6 +10,7 @@
     <merges target="cordova.plugins.bridge"/>
   </js-module>
   <platform name="android">
+    <hook src="hooks/gradle.js" type="before_plugin_install" />
     <config-file target="res/xml/config.xml" parent="/widget/plugins">
       <feature name="Safe">
         <param name="android-package" value="com.bridge.Safe"/>
