@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple file crypto for Cordova.",
   "cordova": {
-    "id": "com.bridge.safe",
+    "id": "com.disusered.safe",
     "platforms": [
       "android",
       "ios"

@@ -1,5 +1,5 @@
 /**
- * bridge.safe.js
+ * disusered.safe.js
  *
  * @overview Easy to use cryptographic operations for Cordova.
  * @author Carlos Antonio

@@ -3,7 +3,7 @@ module.exports = function(context) {
   var exec = require('child_process').exec;
   var dfd  = new Q.defer();
 
-  console.log('Installing "com.bridge.safe" dependencies ');
+  console.log('Installing "com.disusered.safe" dependencies ');
   exec('gradle getDeps', {
     cwd: context.opts.plugin.dir
   }, function() {
