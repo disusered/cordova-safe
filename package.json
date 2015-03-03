@@ -1,6 +1,6 @@
 {
   "name": "cordova-safe",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Simple file crypto for Cordova.",
   "cordova": {
     "id": "com.bridge.safe",
