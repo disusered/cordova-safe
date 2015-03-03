@@ -3,11 +3,11 @@ module.exports = function(context) {
   var exec = require('child_process').exec;
   var dfd  = new Q.defer();
 
+  console.log('Installing "com.bridge.safe" dependencies ');
   exec('gradle getDeps', {
     cwd: context.opts.plugin.dir
   }, function() {
     dfd.resolve();
-    console.log('cordova-safe - Gradle dependencies installed');
   });
 
   return dfd.promise;
