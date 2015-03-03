@@ -8,7 +8,7 @@ File encryption for Cordova.
 ## Install
 
 ```bash
-$ cordova plugin add org.bridge.safe
+$ cordova plugin add org.disusered.safe
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ $ cordova plugin add org.bridge.safe
 The plugin exposes the following methods:
 
 ```javascript
-cordova.plugins.bridge.safe.encrypt(file, key, success, error);
-cordova.plugins.bridge.safe.decrypt(file, key, success, error);
+cordova.plugins.disusered.safe.encrypt(file, key, success, error);
+cordova.plugins.disusered.safe.decrypt(file, key, success, error);
 ```
 
 #### Parameters:
@@ -32,7 +32,7 @@ cordova.plugins.bridge.safe.decrypt(file, key, success, error);
 #### Default usage
 
 ```javascript
-var safe = cordova.plugins.bridge.safe;
+var safe = cordova.plugins.disusered.safe;
 
 // encrypt
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', 'foo');
@@ -44,7 +44,7 @@ safe.decrypt('file:/storage/sdcard/my-encrypted-file.txt', 'bar');
 #### With optional callbacks
 
 ```javascript
-var safe = cordova.plugins.bridge.safe,
+var safe = cordova.plugins.disusered.safe,
     key = 'someKey';
 
 
@@ -62,3 +62,8 @@ function error() {
 
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', key, success, error);
 ```
+
+## Dependencies
+- [Node](http://nodejs.org/)
+- [Gradle](https://gradle.org/)
+- [CocoaPods](http://cocoapods.org/)
