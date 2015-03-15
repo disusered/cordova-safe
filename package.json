@@ -1,6 +1,6 @@
 {
   "name": "cordova-safe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple file crypto for Cordova.",
   "cordova": {
     "id": "com.disusered.safe",
@@ -23,7 +23,7 @@
     "cordova-ios"
   ],
   "author": "Carlos Antonio",
-  "license": "GPLv2",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/disusered/cordova-safe/issues"
   },
