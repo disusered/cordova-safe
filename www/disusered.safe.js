@@ -3,7 +3,7 @@
  *
  * @overview Easy to use cryptographic operations for Cordova.
  * @author Carlos Antonio
- * @license GPLv2
+ * @license MIT
 */
 
 var exec = require('cordova/exec');

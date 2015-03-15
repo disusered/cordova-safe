@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.disusered.safe" version="1.0.1">
   <name>Safe</name>
   <description>Simple file crypto for Cordova.</description>
-  <license>GPLv2</license>
+  <license>MIT</license>
   <keywords>cordova,file,encrypt,decrypt</keywords>
   <repo>https://github.com/disusered/cordova-safe</repo>
   <issue>https://github.com/disusered/cordova-safe/issues</issue>
