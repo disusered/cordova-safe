@@ -3,7 +3,7 @@ cordova-safe
 
 [![Build Status](https://travis-ci.org/disusered/cordova-safe.svg)](https://travis-ci.org/disusered/cordova-safe) [![Code Climate](https://codeclimate.com/github/disusered/cordova-safe/badges/gpa.svg)](https://codeclimate.com/github/disusered/cordova-safe) 
 
-File encryption for Cordova.
+> Simple file encryption for Cordova.
 
 ## Install
 
@@ -12,36 +12,6 @@ $ cordova plugin add org.disusered.safe
 ```
 
 ## Usage
-
-The plugin exposes the following methods:
-
-```javascript
-cordova.plugins.disusered.safe.encrypt(file, key, success, error);
-cordova.plugins.disusered.safe.decrypt(file, key, success, error);
-```
-
-#### Parameters:
-
-* __file:__ A string representing a local URI
-* __key:__ A key for the crypto operations
-* __success:__ Optional success callback
-* __error:__ Optional error callback
-
-## Example
-
-#### Default usage
-
-```javascript
-var safe = cordova.plugins.disusered.safe;
-
-// encrypt
-safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', 'foo');
-
-// decrypt
-safe.decrypt('file:/storage/sdcard/my-encrypted-file.txt', 'bar');
-```
-
-#### With optional callbacks
 
 ```javascript
 var safe = cordova.plugins.disusered.safe,
@@ -63,7 +33,21 @@ function error() {
 safe.encrypt('file:/storage/sdcard/DCIM/Camera/1404177327783.jpg', key, success, error);
 ```
 
-## Dependencies
-- [Node](http://nodejs.org/)
-- [Gradle](https://gradle.org/)
-- [CocoaPods](http://cocoapods.org/)
+## API
+
+The plugin exposes the following methods:
+
+```javascript
+cordova.plugins.disusered.safe.encrypt(file, key, success, error);
+cordova.plugins.disusered.safe.decrypt(file, key, success, error);
+```
+
+#### Parameters:
+* __file:__ A string representing a local URI
+* __key:__ A key for the crypto operations
+* __success:__ Optional success callback
+* __error:__ Optional error callback
+
+## License
+
+MIT © [Carlos Rosquillas](http://carlosanton.io)
