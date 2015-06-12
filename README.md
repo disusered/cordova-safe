@@ -8,7 +8,7 @@ cordova-safe
 ## Install
 
 ```bash
-$ cordova plugin add org.disusered.safe
+$ cordova plugin add cordova-safe
 ```
 
 ## Usage
