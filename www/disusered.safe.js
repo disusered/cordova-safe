@@ -16,6 +16,7 @@ var safe = {
    * @param {String} password Password for encryption
    * @param {Function} success Success callback
    * @param {Function} error Failure callback
+   * @returns {void}
    */
   encrypt: function(path, password, success, error) {
     var encryptSuccess, encryptError;
@@ -25,8 +26,7 @@ var safe = {
     encryptSuccess = onSuccess.bind(null, success);
     encryptError = onError.bind(null, error);
 
-    exec(encryptSuccess, encryptError, "Safe", "encrypt", [path, password]);
-
+    exec(encryptSuccess, encryptError, 'Safe', 'encrypt', [path, password]);
   },
 
   /**
@@ -36,6 +36,7 @@ var safe = {
    * @param {String} password Password for decryption
    * @param {Function} success Success callback
    * @param {Function} error Failure callback
+   * @returns {void}
    */
   decrypt: function(path, password, success, error) {
     var decryptSuccess, decryptError;
@@ -43,9 +44,9 @@ var safe = {
     if (!path || arguments.length === 0) return;
 
     decryptSuccess = onSuccess.bind(null, success);
-    decryptError   = onError.bind(null, error);
+    decryptError = onError.bind(null, error);
 
-    exec(decryptSuccess, decryptError, "Safe", "decrypt", [path, password]);
+    exec(decryptSuccess, decryptError, 'Safe', 'decrypt', [path, password]);
   }
 
 };
@@ -53,9 +54,9 @@ var safe = {
 /**
  * onSuccess
  *
- * @param {String} path Encrypted file URI
  * @param {Function} success Success callback
- * @return {String} Encrypted file URI
+ * @param {String} path Encrypted file URI
+ * @returns {String} Encrypted file URI
  */
 function onSuccess(success, path) {
   if (typeof success === 'function') success(path);
@@ -65,9 +66,9 @@ function onSuccess(success, path) {
 /**
  * onError
  *
- * @param {String} path Decrypted file URI
- * @param {Function} success Error callback
- * @return {String} Decrypted file URI
+ * @param {String} error Error callback
+ * @param {Function} code Error code
+ * @returns {String} Decrypted file URI
  */
 function onError(error, code) {
   if (typeof error === 'function') error(code);
