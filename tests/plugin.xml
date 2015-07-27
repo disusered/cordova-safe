@@ -4,4 +4,6 @@
   <license>MIT</license>
   <js-module src="tests.js" name="tests">
   </js-module>
+  <dependency id="cordova-plugin-file"/>
+  <dependency id="cordova-plugin-file-transfer"/>
 </plugin>

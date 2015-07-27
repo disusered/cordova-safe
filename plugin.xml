@@ -6,16 +6,13 @@
   <keywords>cordova,file,encrypt,decrypt</keywords>
   <repo>https://github.com/disusered/cordova-safe</repo>
   <issue>https://github.com/disusered/cordova-safe/issues</issue>
-  <engines>
-    <engine name="cordova-android" version=">=4.0.0" />
-    <engine name="cordova-plugman" version=">=4.2.1" />
-  </engines>
-  <platform name="android">
   <js-module name="safe" src="www/disusered.safe.js">
     <merges target="cordova.plugins.disusered"/>
   </js-module>
-    <framework src="com.facebook.conceal:conceal:1.0.0" />
-    <config-file target="res/xml/config.xml" parent="/widget/plugins">
+  <platform name="android">
+    <framework src="src/android/conceal.gradle" custom="true" type="gradleReference" />
+    <source-file src="src/android/Safe.java" target-dir="src/com/disusered"/>
+    <config-file target="res/xml/config.xml" parent="/*" >
       <feature name="Safe">
         <param name="android-package" value="com.disusered.Safe"/>
       </feature>
@@ -23,7 +20,6 @@
     <config-file target="AndroidManifest.xml" parent="/manifest">
       <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
