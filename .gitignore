@@ -1,5 +1,4 @@
 .local-vimrc
 .DS_Store
 .gradle
-libs
 node_modules

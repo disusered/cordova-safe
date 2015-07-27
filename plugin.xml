@@ -10,8 +10,9 @@
     <merges target="cordova.plugins.disusered"/>
   </js-module>
   <platform name="android">
-    <framework src="com.facebook.conceal:conceal:1.0.0" />
-    <config-file target="res/xml/config.xml" parent="/widget/plugins">
+    <framework src="src/android/conceal.gradle" custom="true" type="gradleReference" />
+    <source-file src="src/android/Safe.java" target-dir="src/com/disusered"/>
+    <config-file target="res/xml/config.xml" parent="/*" >
       <feature name="Safe">
         <param name="android-package" value="com.disusered.Safe"/>
       </feature>
@@ -19,8 +20,6 @@
     <config-file target="AndroidManifest.xml" parent="/manifest">
       <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/Safe.java" target-dir="src/com/disusered"/>
   </platform>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
