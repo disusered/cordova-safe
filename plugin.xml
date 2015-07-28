@@ -6,6 +6,10 @@
   <keywords>cordova,file,encrypt,decrypt</keywords>
   <repo>https://github.com/disusered/cordova-safe</repo>
   <issue>https://github.com/disusered/cordova-safe/issues</issue>
+  <engines>
+    <engine name="cordova-android" version=">=4" />
+    <engine name="cordova-plugman" version=">=4.2.0" /><!-- needed for gradleReference support -->
+  </engines>
   <js-module name="safe" src="www/disusered.safe.js">
     <merges target="cordova.plugins.disusered"/>
   </js-module>
