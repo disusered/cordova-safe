@@ -90,6 +90,8 @@
 
       // write to generated path
       [data writeToFile:path atomically:YES];
+    } else {
+      path = nil;
     }
   }
 
