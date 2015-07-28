@@ -61,7 +61,8 @@ exports.defineAutoTests = function() {
   describe('encrypted test file', function() {
     var uri;
     beforeEach(function(done) {
-      var url = prefix + 'encrypted.png';
+      var platform = cordova.platformId.match(/ios/i) ? 'ios' : 'android';
+      var url = prefix + 'encrypted-' + platform + '.png';
       function success(path) { test(path); }
       function error(code) { test(); }
       function test(path) { uri = path; done(); }
