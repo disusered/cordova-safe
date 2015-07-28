@@ -1,6 +1,6 @@
 {
   "name": "cordova-safe",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Simple file crypto for Cordova.",
   "cordova": {
     "id": "com.disusered.safe",
@@ -8,6 +8,10 @@
       "android",
       "ios"
     ]
+  },
+  "scripts": {
+    "lint": "gulp lint",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -27,5 +31,9 @@
   "bugs": {
     "url": "https://github.com/disusered/cordova-safe/issues"
   },
-  "homepage": "https://github.com/disusered/cordova-safe"
+  "homepage": "https://github.com/disusered/cordova-safe",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0"
+  }
 }
