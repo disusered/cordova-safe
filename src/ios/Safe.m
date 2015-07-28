@@ -60,15 +60,20 @@
 - (NSString*)crypto:(NSString *)action command:(CDVInvokedUrlCommand *)command {
 
   NSData *data = nil;
-  NSString *path = [command.arguments objectAtIndex:0];
+  NSString *filePath = [command.arguments objectAtIndex:0];
   NSString *password = [command.arguments objectAtIndex:1];
+  NSString *fileName = [filePath lastPathComponent];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+  NSString *path = [documentsPath stringByAppendingPathComponent:fileName];
+  BOOL fileExists = [fileManager fileExistsAtPath:path];
 
   // if path and password args exist
   if (path != nil && [path length] > 0 && password != nil &&
       [password length] > 0) {
 
     // if file exists
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if (fileExists) {
 
       // get file data
       NSData *fileData = [NSData dataWithContentsOfFile:path];
@@ -90,6 +95,8 @@
 
       // write to generated path
       [data writeToFile:path atomically:YES];
+    } else {
+      path = nil;
     }
   }
 
