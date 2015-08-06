@@ -107,28 +107,37 @@ function download(url, success, error, trustAllCertificates) {
   var name = url.substring(url.lastIndexOf('/') + 1);
   var path = dir + name;
 
-  function onSuccess(uri, callback) {
-    if (typeof callback === 'function') {
-      callback(uri);
+  if (typeof success === 'boolean') {
+    trustAllCertificates = success;
+  }
+
+  return new Promise(function(resolve, reject) {
+    function onSuccess(uri, callback) {
+      if (typeof callback === 'function') {
+        callback(uri);
+      }
+      resolve(uri);
+      return uri;
     }
-    return uri;
-  }
 
-  function onError(callback) {
-    var code = (arguments.length > 1) ? arguments[1] : 0;
-    if (typeof callback === 'function') {
-      callback(code);
+    function onError(callback) {
+      var code = (arguments.length > 1) ? arguments[1] : 0;
+      if (typeof callback === 'function') {
+        callback(code);
+      }
+      reject(code);
+      return code;
     }
-    return code;
-  }
 
-  if (typeof trustAllCertificates !== 'boolean') {
-    // Defaults to false
-    trustAllCertificates = false;
-  }
+    if (typeof trustAllCertificates !== 'boolean') {
+      // Defaults to false
+      trustAllCertificates = false;
+    }
 
-  ft.download(encodeURI(url), path, function(entry) {
-        var file = entry.toURL();
-        onSuccess(file, success);
-      }, onError.bind(this, error), trustAllCertificates);
+    ft.download(encodeURI(url), path, function(entry) {
+          var file = entry.toURL();
+          onSuccess(file, success);
+        }, onError.bind(this, error), trustAllCertificates);
+
+  });
 }
