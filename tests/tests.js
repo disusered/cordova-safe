@@ -91,6 +91,52 @@ exports.defineAutoTests = function() {
   });
 };
 
+exports.defineManualTests = function(contentEl, createActionButton) {
+  var testInfo;
+
+  var decrypted = prefix + 'decrypted.png';
+  var encrypted = prefix + 'encrypted-' + platform + '.png';
+
+  testInfo = '<h3>Press Open File and a test file will open in a ' +
+    'native context</h3><div id="crypto"></div>' +
+    'Expected result: File crypto operation succeeds.';
+
+  contentEl.innerHTML = testInfo;
+
+  function error(code) {
+    if (code.error === 1 || code === 1) {
+      console.log('No file handler found');
+    } else {
+      console.log('Undefined error');
+    }
+    return Promise.reject(code);
+  }
+
+  function promisify(uri, action, resolve, reject) {
+    safe[action](uri, key, function(encryptedFileUri) {
+      resolve(encryptedFileUri);
+    }, function() {
+      reject('Error with cryptographic operation');
+    });
+  }
+
+  createActionButton('Decrypt', function() {
+    download(encrypted, true).then(function(uri) {
+      return new Promise(promisify.bind(this, uri, 'decrypt'));
+    }).then(function(uri) {
+      console.log(uri);
+    }).catch(error);
+  }, 'crypto');
+
+  createActionButton('Encrypt', function() {
+    download(decrypted, true).then(function(uri) {
+      return new Promise(promisify.bind(this, uri, 'encrypt'));
+    }).then(function(uri) {
+      console.log(uri);
+    }).catch(error);
+  }, 'crypto');
+};
+
 /**
  * download
  *
