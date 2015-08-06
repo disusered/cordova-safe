@@ -16,15 +16,15 @@ exports.defineAutoTests = function() {
 
   describe('cordova.plugins.disusered.safe', function() {
     it('should exist', function() {
-      expect(window.cordova.plugins.disusered.safe).toBeDefined();
+      expect(safe).toBeDefined();
     });
 
     it('should have an "encrypt" method', function() {
-      expect(window.cordova.plugins.disusered.safe.encrypt).toBeDefined();
+      expect(safe.encrypt).toBeDefined();
     });
 
     it('should have an "decrypt" method', function() {
-      expect(window.cordova.plugins.disusered.safe.decrypt).toBeDefined();
+      expect(safe.decrypt).toBeDefined();
     });
   });
 
