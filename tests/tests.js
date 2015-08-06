@@ -1,3 +1,5 @@
+var platform = cordova.platformId.match(/ios/i) ? 'ios' : 'android';
+
 var safe = cordova.plugins.disusered.safe;
 
 var key = 'someKey';
@@ -61,7 +63,6 @@ exports.defineAutoTests = function() {
   describe('encrypted test file', function() {
     var uri;
     beforeEach(function(done) {
-      var platform = cordova.platformId.match(/ios/i) ? 'ios' : 'android';
       var url = prefix + 'encrypted-' + platform + '.png';
       function success(path) { test(path); }
       function error(code) { test(); }
