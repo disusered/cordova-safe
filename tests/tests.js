@@ -1,3 +1,4 @@
+/* jshint unused: true */
 var platform = cordova.platformId.match(/ios/i) ? 'ios' : 'android';
 
 var safe = cordova.plugins.disusered.safe;
