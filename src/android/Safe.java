@@ -11,6 +11,7 @@ import java.io.OutputStream;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaResourceApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,12 +48,15 @@ public class Safe extends CordovaPlugin {
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
-      throws JSONException {
+          throws JSONException {
     if (action.equals(ENCRYPT_ACTION) || action.equals(DECRYPT_ACTION)) {
+      CordovaResourceApi resourceApi = webView.getResourceApi();
+
       String path = args.getString(0);
       String pass = args.getString(1);
+      Uri normalizedPath = resourceApi.remapUri(Uri.parse(path));
 
-      this.cryptOp(path, pass, action, callbackContext);
+      this.cryptOp(normalizedPath.toString(), pass, action, callbackContext);
 
       return true;
     }
